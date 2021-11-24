@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require('cors');
 require("./database/mongoconnect.js");
+const nodemailer = require("nodemailer");
+//some update to see if jenkins automatically updates
 
 // Mongo DB schemas
 const User = require("./models/users");
@@ -31,10 +33,48 @@ app.post("/users", async (req, res) => {
 });
 
 app.post('/signup', async function(req, res ) {
-	
+	const accountSid = 'AC7760397f4fa6fec267c21e91f8b4403f'; 
+	const authToken = '9c92d28bf4a6288043de58be87e3ee02'; 
+	const client = require('twilio')(accountSid, authToken); 
+ 
+
+
+
 	const user = User(req.body);
 	try {
 	  await user.save();
+	
+	  let testAccount = await nodemailer.createTestAccount();
+
+  // create reusable transporter object using the default SMTP transport
+  	let transporter = nodemailer.createTransport({
+    	host: "smtp.ethereal.email",
+    	port: 587,
+    	secure: false, // true for 465, false for other ports
+    	auth: {
+      	user: testAccount.user, // generated ethereal user
+      	pass: testAccount.pass, // generated ethereal password
+    	},
+  });
+
+  	let info = await transporter.sendMail({
+    	from: '"Fred Foo 👻" <foo@example.com>', // sender address
+    	to: "hect16@gmail.com", // list of receivers
+    	subject: "Hello ✔", // Subject line
+    	text: "Hello world?", // plain text body
+    	html: "<b>Hello world?</b>", // html body
+  	});
+
+
+	  client.messages 
+      .create({ 
+         body: 'Thank you '+ req.body.fname + ' ,' + req.body.lname  + 'for signing up for Motivatr!',  
+         messagingServiceSid: 'MG51d38ea974422fa5e7735f65133f87c6',      
+         to: req.body.phone
+       }) 
+      .then(message => console.log(message.sid)) 
+      .done();
+
 	  res.status(200).send(user)
 	} catch (e) {
 	  res.status(400).send();

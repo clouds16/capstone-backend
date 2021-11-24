@@ -29,6 +29,11 @@ const User = mongoose.model("User", {
 			}
 		},
 	},
+	phone: {
+		required: true, 
+		trim:true ,
+		type: String
+	},
 	
 	password: {
 		type: String,
