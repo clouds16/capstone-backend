@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongo_atlas = "mongodb+srv://cloud16:Cloudgrey16@cluster0.64pln.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const mongo_atlas = process.env.MONGOOSEKEY  ;
 
 try {
     mongoose.connect(mongo_atlas, {

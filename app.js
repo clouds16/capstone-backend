@@ -1,6 +1,9 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require('cors');
 require("./database/mongoconnect.js");
+
+
 const nodemailer = require("nodemailer");
 //some update to see if jenkins automatically updates
 
@@ -33,12 +36,10 @@ app.post("/users", async (req, res) => {
 });
 
 app.post('/signup', async function(req, res ) {
-	const accountSid = 'AC7760397f4fa6fec267c21e91f8b4403f'; 
-	const authToken = '9c92d28bf4a6288043de58be87e3ee02'; 
+	const accountSid = process.env.TWILIO_ACCOUNTSID; 
+	const authToken = process.env.TWILIO_APIKEY; 
 	const client = require('twilio')(accountSid, authToken); 
  
-
-
 
 	const user = User(req.body);
 	try {
