@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 //Start of Routes
-app.post("/", (req, res) => {
+app.get("/", (req, res) => {
 	res.send({ message : "hello"})
 });
 
