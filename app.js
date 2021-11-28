@@ -2,8 +2,11 @@ require('dotenv').config();
 const express = require("express");
 const cors = require('cors');
 require("./database/mongoconnect.js");
+const mailjet = require ('node-mailjet');
 
+mailjet.connect('34e259d28c17b5aae05273fa38e81879', '7571d6748fb3a63db2c6425d8454d709')
 
+//test change
 const nodemailer = require("nodemailer");
 //some update to see if jenkins automatically updates
 
@@ -11,6 +14,7 @@ const nodemailer = require("nodemailer");
 const User = require("./models/users");
 const Stats = require("./models/stats")
 const Workouts = require("./models/workouts")
+const Videos = require('./models/videos')
 
 // App engine 
 const app = express();
@@ -39,7 +43,35 @@ app.post('/signup', async function(req, res ) {
 	const accountSid = process.env.TWILIO_ACCOUNTSID; 
 	const authToken = process.env.TWILIO_APIKEY; 
 	const client = require('twilio')(accountSid, authToken); 
- 
+	
+	const request = mailjet.post("send", {'version': 'v3.1'}).request({
+  "Messages":[
+    {
+      "From": {
+        "Email": "hect16@gmail.com",
+        "Name": "Hector"
+      },
+      "To": [
+        {
+          "Email": "hect16@gmail.com",
+          "Name": "Hector"
+        }
+      ],
+      "Subject": "Greetings from Mailjet.",
+      "TextPart": "My first Mailjet email",
+      "HTMLPart": "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!",
+      "CustomID": "AppGettingStartedTest"
+    }
+  ]
+})
+
+	request.then((result) => {
+  			console.log(result.body)
+			})
+			.catch((err) => {
+  					console.log(err.statusCode)
+			})
+
 
 	const user = User(req.body);
 	try {
