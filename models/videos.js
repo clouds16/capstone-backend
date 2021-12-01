@@ -12,8 +12,8 @@ const Videos = mongoose.model('Videos', new mongoose.Schema({
     uri : {
         required :true, 
         type : String,
-        lowercase: true,
-        trim : true
+        trim : true,
+        unique : true
     },
     muscle: {
         required :true, 
