@@ -33,7 +33,8 @@ const User = mongoose.model("User", {
 	phone: {
 		required: true, 
 		trim:true ,
-		type: String
+		type: String ,
+		unique : true
 	},
 	
 	password: {
