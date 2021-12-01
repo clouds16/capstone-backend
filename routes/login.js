@@ -2,7 +2,6 @@ const express = require('express')
 var router = express.Router()
 const User = require("../models/users");
 
-
 router.post("/login", async (req, res) => {
 	console.log(req.body)
 	
@@ -22,6 +21,5 @@ router.post("/login", async (req, res) => {
 		}
 	
 })
-
 
 module.exports = router;

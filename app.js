@@ -9,7 +9,6 @@ mailjet.connect('34e259d28c17b5aae05273fa38e81879', '7571d6748fb3a63db2c6425d845
 //email
 const nodemailer = require("nodemailer");
 
-
 // Mongo DB schemas
 const User = require("./models/users");
 const Stats = require("./models/stats")
@@ -23,45 +22,33 @@ app.use(express.json());
 app.use(cors());
 
 //Start of Routes
-
-
 app.get("/", (req, res) => {
 	res.send({ message : "hello"})
 });
 
-
 const signup = require('./routes/signup')
-app.use(signup)
-
-var addvideo =  require('./routes/addvideos')
-app.use(addvideo)
-
+const addvideo =  require('./routes/addvideos')
 const login = require('./routes/login')
-app.use(login)
-
 const getusers = require('./routes/devusers')
-app.use(getusers)
-
 const updateweight = require('./routes/addweight')
-app.use(updateweight)
-
-app.post("/profile/:id/addworkout", (req, res) => {
-
-})
-
 const profile = require('./routes/profile')
-app.use(profile)
-
 const weighthistory =  require('./routes/weighthistory')
-app.use(weighthistory)
-
 const allvideos = require('./routes/devvideos')
-app.use(allvideos)
-
-
 const findvideobyID = require('./routes/findvideo')
+
+app.use(signup)
+app.use(login)
+app.use(profile)
+app.use(updateweight)
+app.use(getusers)
+app.use(addvideo)
+app.use(weighthistory)
+app.use(allvideos)
 app.use(findvideobyID)
 
+app.post("/profile/:id/addworkout", (req, res) => {
+	consoele.log('call')
+})
 
 
 app.listen(port, () => {
