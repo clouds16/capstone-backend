@@ -13,23 +13,20 @@ router.post('/signup', async function(req, res ) {
 	
 
 	const user = User(req.body);
-	
-	try {
-	  await user.save();
-	
-	  client.messages 
-      .create({ 
-         body: 'Thank you '+ req.body.fname + ' ,' + req.body.lname  + ' for signing up for Motivatr!',  
-         messagingServiceSid: 'MG51d38ea974422fa5e7735f65133f87c6',      
-         to: req.body.phone
-       }) 
-      .then(message => console.log(message.sid)) 
-      .done();
 
+	try {
+	  await user.save() ;
+	//   client.messages 
+    //   .create({ 
+    //      body: 'Thank you '+ req.body.fname + ' ,' + req.body.lname  + ' for signing up for Motivatr!',  
+    //      messagingServiceSid: 'MG51d38ea974422fa5e7735f65133f87c6',      
+    //      to: req.body.phone
+    //    }) 
+    //   .then(message => console.log(message.sid)) 
+    //   .done();
 
 	  //send back status
 	  res.status(200).send(user)
-
 
 	} catch (e) {
 	  res.status(400).send();
