@@ -10,7 +10,7 @@ router.post("/login", async (req, res) => {
 			if (response[0]) {
 				console.log("response is", response);
 				res.send(response[0])
-			}else {
+			} else {
 				res.sendStatus(404)
 			}
 			
