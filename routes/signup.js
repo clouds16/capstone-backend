@@ -13,7 +13,7 @@ router.post('/signup', async function(req, res ) {
 	
 
 	const user = User(req.body);
-
+	console.log(req.body)
 	try {
 	  await user.save() ;
 	//   client.messages 
