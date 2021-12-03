@@ -37,6 +37,7 @@ const allvideos = require('./routes/devvideos')
 const findvideobyID = require('./routes/findvideo')
 const addworkout = require('./routes/addworkout')
 const workouthistory = require('./routes/workouthistory')
+const alluserworkouts =  require('./routes/alluserworkouts')
 
 app.use(signup)
 app.use(login)
@@ -49,6 +50,7 @@ app.use(allvideos)
 app.use(findvideobyID)
 app.use(addworkout)
 app.use(workouthistory)
+app.use(alluserworkouts)
 
 
 
