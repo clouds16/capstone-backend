@@ -8,16 +8,13 @@ mailjet.connect('34e259d28c17b5aae05273fa38e81879', '7571d6748fb3a63db2c6425d845
 const Vonage = require('@vonage/server-sdk')
 
 const vonage = new Vonage({
-  apiKey: "48eb7b52",
-  apiSecret: "BogSTZQcjII91mOQ"
+  apiKey: process.env.VONAEAPIKEY,
+  apiSecret: process.env.VONAGEAPISECRET
 })
 
 
 
 router.post('/signup', async function(req, res ) {
-	const accountSid = process.env.TWILIO_ACCOUNTSID; 
-	const authToken = process.env.TWILIO_APIKEY; 
-	const client = require('twilio')(accountSid, authToken); 
 
 
 	const from = "18664851562"

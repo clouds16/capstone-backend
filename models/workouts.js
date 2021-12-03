@@ -7,7 +7,7 @@ const Workout = mongoose.model('Workout', new mongoose.Schema({
         
     },
     sets : {
-        type: String,
+        type: Number,
         required: true, 
         trim : true
     },
