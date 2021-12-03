@@ -35,6 +35,7 @@ const profile = require('./routes/profile')
 const weighthistory =  require('./routes/weighthistory')
 const allvideos = require('./routes/devvideos')
 const findvideobyID = require('./routes/findvideo')
+const addworkout = require('./routes/addworkouts')
 
 app.use(signup)
 app.use(login)
@@ -45,10 +46,9 @@ app.use(addvideo)
 app.use(weighthistory)
 app.use(allvideos)
 app.use(findvideobyID)
+app.use(addworkout)
 
-app.post("/profile/:id/addworkout", (req, res) => {
-	consoele.log('call')
-})
+
 
 
 app.listen(port, () => {
