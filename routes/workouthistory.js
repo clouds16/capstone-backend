@@ -1,12 +1,12 @@
 const express = require('express')
 var router = express.Router()
-const Stats = require("../models/stats")
+const Workout = require("../models/workouts")
 
 
 router.get("/profile/:id/workouthistory", (req, res) => {	
 	
 
-	const stats = Stats.find({ user : req.params.id }).then(  (userstats) => {
+	const stats = Workout.find({ user : req.params.id }).then(  (userstats) => {
 		res.send(userstats)
 	}).catch( e => res.send(e))
 
