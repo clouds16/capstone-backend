@@ -6,7 +6,7 @@ const Workout = mongoose.model('Workout', new mongoose.Schema({
         required: true,
         
     },
-    excercise: {
+    sets : {
         type: String,
         required: true, 
         trim : true
@@ -15,6 +15,7 @@ const Workout = mongoose.model('Workout', new mongoose.Schema({
         type: Number,
         required: true
     },
+    
     units: {
         required: true,
         type: String
