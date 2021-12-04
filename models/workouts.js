@@ -9,11 +9,21 @@ const Workout = mongoose.model('Workout', new mongoose.Schema({
     sets : {
         type: Number,
         required: true, 
-        trim : true
+        validate(value) {
+            if (value <= 0) {
+                throw new Error("Sets Cannot be 0 or Less")
+            }
+        }
+    
     },
     force : {
         type: Number,
-        required: true
+        required: true,
+        validate(value) {
+            if (value <= 0 ){
+                throw new Error("Force Cannot be 0 or Less")
+            }
+        }
     },
     
     units: {
@@ -25,6 +35,7 @@ const Workout = mongoose.model('Workout', new mongoose.Schema({
         required: true,
         ref: 'User'
     }
+
     }, {
     timestamps: true
 }))
