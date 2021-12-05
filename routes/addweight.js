@@ -6,6 +6,8 @@ const Stats = require("../models/stats")
 
 router.post("/profile/:id/updateweight" , async  (req, res) => {
 	console.log(req.body)
+
+	
 	let weight = new Stats(req.body)
 	
 	try {
@@ -19,6 +21,6 @@ router.post("/profile/:id/updateweight" , async  (req, res) => {
 	}
 })
 
-
+//change
 
 module.exports = router;
